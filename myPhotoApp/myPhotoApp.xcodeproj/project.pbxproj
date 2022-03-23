@@ -17,6 +17,8 @@
 		1119328627E9F4C600ECAED4 /* UIView + Constrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328527E9F4C600ECAED4 /* UIView + Constrains.swift */; };
 		1119328827EA495500ECAED4 /* DownloadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328727EA495500ECAED4 /* DownloadPhotoViewController.swift */; };
 		1119328A27EAA96C00ECAED4 /* ScrollPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328927EAA96C00ECAED4 /* ScrollPhotoViewController.swift */; };
+		1119328D27EAFA7A00ECAED4 /* newPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328C27EAFA7900ECAED4 /* newPhotoModel.swift */; };
+		1119328F27EB0ECB00ECAED4 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328E27EB0ECB00ECAED4 /* FileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		1119328527E9F4C600ECAED4 /* UIView + Constrains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Constrains.swift"; sourceTree = "<group>"; };
 		1119328727EA495500ECAED4 /* DownloadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPhotoViewController.swift; sourceTree = "<group>"; };
 		1119328927EAA96C00ECAED4 /* ScrollPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPhotoViewController.swift; sourceTree = "<group>"; };
+		1119328C27EAFA7900ECAED4 /* newPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newPhotoModel.swift; sourceTree = "<group>"; };
+		1119328E27EB0ECB00ECAED4 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 		1119326927E9936C00ECAED4 /* myPhotoApp */ = {
 			isa = PBXGroup;
 			children = (
+				1119328B27EAFA6200ECAED4 /* Model */,
 				1119328427E9F4AE00ECAED4 /* Extensions */,
 				1119328127E9954E00ECAED4 /* Application */,
 				1119328027E9951900ECAED4 /* Resources */,
@@ -109,6 +114,15 @@
 				1119328527E9F4C600ECAED4 /* UIView + Constrains.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1119328B27EAFA6200ECAED4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1119328E27EB0ECB00ECAED4 /* FileManager.swift */,
+				1119328C27EAFA7900ECAED4 /* newPhotoModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,8 +199,10 @@
 				1119328327E9A5FC00ECAED4 /* GaleryViewController.swift in Sources */,
 				1119326F27E9936C00ECAED4 /* LoginViewController.swift in Sources */,
 				1119326B27E9936C00ECAED4 /* AppDelegate.swift in Sources */,
+				1119328D27EAFA7A00ECAED4 /* newPhotoModel.swift in Sources */,
 				1119328827EA495500ECAED4 /* DownloadPhotoViewController.swift in Sources */,
 				1119328A27EAA96C00ECAED4 /* ScrollPhotoViewController.swift in Sources */,
+				1119328F27EB0ECB00ECAED4 /* FileManager.swift in Sources */,
 				1119326D27E9936C00ECAED4 /* SceneDelegate.swift in Sources */,
 				1119328627E9F4C600ECAED4 /* UIView + Constrains.swift in Sources */,
 			);

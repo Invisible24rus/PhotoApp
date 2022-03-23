@@ -9,6 +9,10 @@ import UIKit
 
 class DownloadPhotoViewController: UIViewController {
     
+    let manager = LocalFileManager.instance
+    var identifiersArray: [String] = UserDefaults.standard.stringArray(forKey: "keyList") ?? [String]()
+    var bottomButtonConstraint: NSLayoutConstraint?
+    
     private let customButtonsView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBlue
@@ -58,9 +62,20 @@ class DownloadPhotoViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Добавить", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .darkGray
+        button.isEnabled = false
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
+        return button
+    }()
+    
+    private let backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Назад", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         return button
     }()
 
@@ -68,15 +83,54 @@ class DownloadPhotoViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setConstraint()
+        addKeyboardObserver()
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+        view.addGestureRecognizer(recognizer)
+        print(identifiersArray.count)
     }
     
+    
     @objc func saveImage() {
-  
+        let identifier = UUID()
+        identifiersArray.append("\(identifier)")
+        UserDefaults.standard.set(self.identifiersArray, forKey: "keyList")
+//        Специально повыводил принты массива с названиями файлов. Когда здесь нажимают добавить. Принится правильно на +1, когда выходим на прошлый экран. Принтится старое значение, до этого добавления. Но если выйти на самый стартовый экран и нажать вход. То принтится правильное новое значение и таблица переделывается. Может в коде поймешь, что не так может быть.
+        print(identifiersArray.count)
+        manager.save(image: photoImageView.image, name: "\(identifier)", comment: commentTextFiled.text ?? "")
+        showAlertDone()
+    }
+    
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        bottomButtonConstraint?.constant -= (keyboardFrame.height - 20)
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+            self.bottomButtonConstraint?.constant = -5 - keyboardFrame.height
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        bottomButtonConstraint?.constant = -80
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func tap() {
+        view.endEditing(true)
+    }
+    
+    @objc func goBack() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func newPhoto() {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            showAlert()
+            showAlertError()
             return
         }
         let picker = UIImagePickerController()
@@ -97,11 +151,22 @@ class DownloadPhotoViewController: UIViewController {
         present(picker, animated: true, completion: nil)
     }
     
-    func showAlert() {
+    func showAlertError() {
         let alert = UIAlertController(title: "Ошибка", message: "Камера не доступна", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Назад", style: .destructive, handler: nil))
         present(alert, animated: true)
     }
+    
+    func showAlertDone() {
+        let alert = UIAlertController(title: "Получилось", message: "Фотография успешно добавлена в галерею", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { UIAlertAction in
+            self.photoImageView.contentMode = .scaleAspectFit
+            self.photoImageView.image = UIImage(systemName: "photo.artframe")
+            self.commentTextFiled.text = ""
+        } ))
+        present(alert, animated: true)
+    }
+    
 
 }
 
@@ -115,28 +180,36 @@ private extension DownloadPhotoViewController {
         view.backgroundColor = .white
         
         
+        
     }
     
     func setConstraint() {
-        view.addSubviewsForAutoLayout([customButtonsView, photoImageView, commentTextFiled, doneButton])
+        view.addSubviewsForAutoLayout([customButtonsView, photoImageView, commentTextFiled, doneButton, backButton])
         customButtonsView.addSubviewsForAutoLayout([newPhotoWithCameraButton, downloadPhotoButton])
+        
+        bottomButtonConstraint = backButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+        bottomButtonConstraint?.isActive = true
         
         NSLayoutConstraint.activate([
             
-            photoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            photoImageView.bottomAnchor.constraint(equalTo: commentTextFiled.topAnchor, constant: -20),
             photoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             photoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             photoImageView.heightAnchor.constraint(equalToConstant: view.frame.height / 2),
             
-            commentTextFiled.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 20),
+            commentTextFiled.bottomAnchor.constraint(equalTo: doneButton.topAnchor, constant: -20),
             commentTextFiled.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             commentTextFiled.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             commentTextFiled.heightAnchor.constraint(equalToConstant: 40),
             
-            doneButton.topAnchor.constraint(equalTo: commentTextFiled.bottomAnchor, constant: 20),
+            doneButton.bottomAnchor.constraint(equalTo: backButton.topAnchor, constant: -20),
             doneButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             doneButton.widthAnchor.constraint(equalToConstant: 120),
             doneButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            backButton.widthAnchor.constraint(equalToConstant: 120),
+            backButton.heightAnchor.constraint(equalToConstant: 40),
             
             customButtonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             customButtonsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
@@ -160,11 +233,15 @@ private extension DownloadPhotoViewController {
 extension DownloadPhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let fileUrl = info[.imageURL] as? URL else { return }
         guard let image = (info[.editedImage] ?? info[.originalImage]) as? UIImage else { return }
         photoImageView.contentMode = .scaleToFill
         photoImageView.image = image
-        print(fileUrl.lastPathComponent)
+        
+        if photoImageView.image != UIImage(systemName: "photo.artframe") {
+            doneButton.isEnabled = true
+            doneButton.backgroundColor = .systemBlue
+        }
+        
         picker.dismiss(animated: true, completion: nil)
         
     }
@@ -172,4 +249,32 @@ extension DownloadPhotoViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+}
+
+
+//MARK: - Keyboard
+
+extension DownloadPhotoViewController {
+    
+    func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardObserver() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.keyboardWillShowNotification, object: nil)
+    }
+}
+
+extension DownloadPhotoViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        addKeyboardObserver()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }

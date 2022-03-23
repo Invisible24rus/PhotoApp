@@ -9,13 +9,11 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
+    let manager = LocalFileManager.instance
     
-    private let imageView1 = UIImageView(image: UIImage(named: "Image1"))
-    private let imageView2 = UIImageView(image: UIImage(named: "Image2"))
-    private let imageView3 = UIImageView(image: UIImage(named: "Image2"))
-    private let imageView4 = UIImageView(image: UIImage(named: "Image2"))
-    private let imageView5 = UIImageView(image: UIImage(named: "Image2"))
-    lazy var array = [imageView1, imageView2, imageView3, imageView4, imageView5]
+    var identifiersArray: [String] = UserDefaults.standard.stringArray(forKey: "keyList") ?? [String]()
+    
+    var newPhotoArray: [NewPhoto] = []
     
     private let galleryPhotoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -33,13 +31,32 @@ class GalleryViewController: UIViewController {
         galleryPhotoCollectionView.delegate = self
         setupView()
         setConstraint()
+        fillingArrayPhoto()
+        galleryPhotoCollectionView.reloadData()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fillingArrayPhoto()
+        print(identifiersArray.count)
+        print(newPhotoArray.count)
         galleryPhotoCollectionView.reloadData()
     }
     
     @objc func pressPlusButton() {
         let downloadPhotoViewController = DownloadPhotoViewController()
-        navigationItem.backButtonTitle = ""
-        navigationController?.pushViewController(downloadPhotoViewController, animated: true)
+        downloadPhotoViewController.modalPresentationStyle = .fullScreen
+        present(downloadPhotoViewController, animated: true, completion: nil)
+//        navigationController?.pushViewController(downloadPhotoViewController, animated: true)
+    }
+    
+    func fillingArrayPhoto() {
+        newPhotoArray = []
+        for identifier in identifiersArray {
+            guard let newPhoto = manager.load(name: "\(identifier)") else { return }
+            newPhotoArray.append(newPhoto)
+        }
     }
 
 }
@@ -75,13 +92,17 @@ private extension GalleryViewController {
 extension GalleryViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        array.count
+        newPhotoArray.count
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath)
-        cell.backgroundView = array[indexPath.row]
+        let imageData = newPhotoArray[indexPath.row].imageData
+        let uiImage = UIImage(data: imageData)
+        cell.backgroundView = UIImageView(image: uiImage)
         return cell
+        
     }
 }
 
@@ -97,9 +118,10 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let image = array[indexPath.row]
         let scrollPhotoViewController = ScrollPhotoViewController()
-        scrollPhotoViewController.array = array
+        let indexPath = indexPath.row
+        scrollPhotoViewController.index = indexPath
+        scrollPhotoViewController.photoArray = newPhotoArray
         navigationItem.backButtonTitle = ""
         navigationController?.pushViewController(scrollPhotoViewController, animated: true)
     }
