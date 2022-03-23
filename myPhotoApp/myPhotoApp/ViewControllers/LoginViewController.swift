@@ -78,6 +78,7 @@ class LoginViewController: UIViewController {
                 completion()
             }
         } else {
+            showAlertError()
             print("Error")
         }
         
@@ -139,7 +140,6 @@ private extension LoginViewController {
             navigationItem.backButtonTitle = ""
             navigationController?.pushViewController(galleryViewController, animated: true)
         }
-        showAlertError()
     }
     
     @objc func goToRegister() {
