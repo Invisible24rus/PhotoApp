@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		1119326B27E9936C00ECAED4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119326A27E9936C00ECAED4 /* AppDelegate.swift */; };
 		1119326D27E9936C00ECAED4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119326C27E9936C00ECAED4 /* SceneDelegate.swift */; };
-		1119326F27E9936C00ECAED4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119326E27E9936C00ECAED4 /* ViewController.swift */; };
+		1119326F27E9936C00ECAED4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119326E27E9936C00ECAED4 /* LoginViewController.swift */; };
 		1119327227E9936C00ECAED4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1119327027E9936C00ECAED4 /* Main.storyboard */; };
 		1119327427E9936D00ECAED4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1119327327E9936D00ECAED4 /* Assets.xcassets */; };
 		1119327727E9936D00ECAED4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1119327527E9936D00ECAED4 /* LaunchScreen.storyboard */; };
+		1119328327E9A5FC00ECAED4 /* GaleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328227E9A5FC00ECAED4 /* GaleryViewController.swift */; };
+		1119328627E9F4C600ECAED4 /* UIView + Constrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328527E9F4C600ECAED4 /* UIView + Constrains.swift */; };
+		1119328827EA495500ECAED4 /* DownloadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328727EA495500ECAED4 /* DownloadPhotoViewController.swift */; };
+		1119328A27EAA96C00ECAED4 /* ScrollPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328927EAA96C00ECAED4 /* ScrollPhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1119326727E9936C00ECAED4 /* myPhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myPhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1119326A27E9936C00ECAED4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1119326C27E9936C00ECAED4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1119326E27E9936C00ECAED4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1119326E27E9936C00ECAED4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1119327127E9936C00ECAED4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1119327327E9936D00ECAED4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1119327627E9936D00ECAED4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1119327827E9936D00ECAED4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1119328227E9A5FC00ECAED4 /* GaleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryViewController.swift; sourceTree = "<group>"; };
+		1119328527E9F4C600ECAED4 /* UIView + Constrains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Constrains.swift"; sourceTree = "<group>"; };
+		1119328727EA495500ECAED4 /* DownloadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPhotoViewController.swift; sourceTree = "<group>"; };
+		1119328927EAA96C00ECAED4 /* ScrollPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,51 @@
 		1119326927E9936C00ECAED4 /* myPhotoApp */ = {
 			isa = PBXGroup;
 			children = (
-				1119326A27E9936C00ECAED4 /* AppDelegate.swift */,
-				1119326C27E9936C00ECAED4 /* SceneDelegate.swift */,
-				1119326E27E9936C00ECAED4 /* ViewController.swift */,
+				1119328427E9F4AE00ECAED4 /* Extensions */,
+				1119328127E9954E00ECAED4 /* Application */,
+				1119328027E9951900ECAED4 /* Resources */,
+				1119327E27E994E600ECAED4 /* ViewControllers */,
+			);
+			path = myPhotoApp;
+			sourceTree = "<group>";
+		};
+		1119327E27E994E600ECAED4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1119326E27E9936C00ECAED4 /* LoginViewController.swift */,
+				1119328227E9A5FC00ECAED4 /* GaleryViewController.swift */,
+				1119328927EAA96C00ECAED4 /* ScrollPhotoViewController.swift */,
+				1119328727EA495500ECAED4 /* DownloadPhotoViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1119328027E9951900ECAED4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				1119327027E9936C00ECAED4 /* Main.storyboard */,
 				1119327327E9936D00ECAED4 /* Assets.xcassets */,
 				1119327527E9936D00ECAED4 /* LaunchScreen.storyboard */,
 				1119327827E9936D00ECAED4 /* Info.plist */,
 			);
-			path = myPhotoApp;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1119328127E9954E00ECAED4 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				1119326A27E9936C00ECAED4 /* AppDelegate.swift */,
+				1119326C27E9936C00ECAED4 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		1119328427E9F4AE00ECAED4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1119328527E9F4C600ECAED4 /* UIView + Constrains.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +182,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1119326F27E9936C00ECAED4 /* ViewController.swift in Sources */,
+				1119328327E9A5FC00ECAED4 /* GaleryViewController.swift in Sources */,
+				1119326F27E9936C00ECAED4 /* LoginViewController.swift in Sources */,
 				1119326B27E9936C00ECAED4 /* AppDelegate.swift in Sources */,
+				1119328827EA495500ECAED4 /* DownloadPhotoViewController.swift in Sources */,
+				1119328A27EAA96C00ECAED4 /* ScrollPhotoViewController.swift in Sources */,
 				1119326D27E9936C00ECAED4 /* SceneDelegate.swift in Sources */,
+				1119328627E9F4C600ECAED4 /* UIView + Constrains.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +338,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = myPhotoApp/Info.plist;
+				INFOPLIST_FILE = myPhotoApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = myPhotoApp/Info.plist;
+				INFOPLIST_FILE = myPhotoApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
