@@ -13,9 +13,6 @@ class ScrollPhotoViewController: UIViewController {
     
     var photoArray: [NewPhoto] = []
     
-    var index = 0
-    
-    
     private let commentTextFiled: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
@@ -45,8 +42,6 @@ class ScrollPhotoViewController: UIViewController {
         setConstraint()
         collectionVIew.delegate = self
         collectionVIew.dataSource = self
-       
-
     }
 
 }
@@ -58,6 +53,8 @@ private extension ScrollPhotoViewController {
     
     func setupView() {
         view.backgroundColor = .white
+        
+        
         
     }
     

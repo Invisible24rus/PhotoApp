@@ -38,6 +38,7 @@ class GalleryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        identifiersArray = UserDefaults.standard.stringArray(forKey: "keyList") ?? [String]()
         fillingArrayPhoto()
         print(identifiersArray.count)
         print(newPhotoArray.count)
@@ -48,7 +49,6 @@ class GalleryViewController: UIViewController {
         let downloadPhotoViewController = DownloadPhotoViewController()
         downloadPhotoViewController.modalPresentationStyle = .fullScreen
         present(downloadPhotoViewController, animated: true, completion: nil)
-//        navigationController?.pushViewController(downloadPhotoViewController, animated: true)
     }
     
     func fillingArrayPhoto() {
@@ -67,7 +67,7 @@ class GalleryViewController: UIViewController {
 private extension GalleryViewController {
     
     func setupView() {
-        
+      
         title = "Галерея"
         view.backgroundColor = .white
         
@@ -119,8 +119,6 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let scrollPhotoViewController = ScrollPhotoViewController()
-        let indexPath = indexPath.row
-        scrollPhotoViewController.index = indexPath
         scrollPhotoViewController.photoArray = newPhotoArray
         navigationItem.backButtonTitle = ""
         navigationController?.pushViewController(scrollPhotoViewController, animated: true)

@@ -94,7 +94,6 @@ class DownloadPhotoViewController: UIViewController {
         let identifier = UUID()
         identifiersArray.append("\(identifier)")
         UserDefaults.standard.set(self.identifiersArray, forKey: "keyList")
-//        Специально повыводил принты массива с названиями файлов. Когда здесь нажимают добавить. Принится правильно на +1, когда выходим на прошлый экран. Принтится старое значение, до этого добавления. Но если выйти на самый стартовый экран и нажать вход. То принтится правильное новое значение и таблица переделывается. Может в коде поймешь, что не так может быть.
         print(identifiersArray.count)
         manager.save(image: photoImageView.image, name: "\(identifier)", comment: commentTextFiled.text ?? "")
         showAlertDone()
@@ -178,9 +177,7 @@ private extension DownloadPhotoViewController {
         
         title = "Изображение"
         view.backgroundColor = .white
-        
-        
-        
+
     }
     
     func setConstraint() {
@@ -223,8 +220,6 @@ private extension DownloadPhotoViewController {
             downloadPhotoButton.trailingAnchor.constraint(equalTo: customButtonsView.trailingAnchor),
             downloadPhotoButton.widthAnchor.constraint(equalToConstant: 50),
             downloadPhotoButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            
         ])
     }
     

@@ -19,6 +19,7 @@
 		1119328A27EAA96C00ECAED4 /* ScrollPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328927EAA96C00ECAED4 /* ScrollPhotoViewController.swift */; };
 		1119328D27EAFA7A00ECAED4 /* newPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328C27EAFA7900ECAED4 /* newPhotoModel.swift */; };
 		1119328F27EB0ECB00ECAED4 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119328E27EB0ECB00ECAED4 /* FileManager.swift */; };
+		1119329127EB75C000ECAED4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119329027EB75C000ECAED4 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		1119328927EAA96C00ECAED4 /* ScrollPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPhotoViewController.swift; sourceTree = "<group>"; };
 		1119328C27EAFA7900ECAED4 /* newPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newPhotoModel.swift; sourceTree = "<group>"; };
 		1119328E27EB0ECB00ECAED4 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		1119329027EB75C000ECAED4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				1119326E27E9936C00ECAED4 /* LoginViewController.swift */,
+				1119329027EB75C000ECAED4 /* RegisterViewController.swift */,
 				1119328227E9A5FC00ECAED4 /* GaleryViewController.swift */,
 				1119328927EAA96C00ECAED4 /* ScrollPhotoViewController.swift */,
 				1119328727EA495500ECAED4 /* DownloadPhotoViewController.swift */,
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1119328327E9A5FC00ECAED4 /* GaleryViewController.swift in Sources */,
+				1119329127EB75C000ECAED4 /* RegisterViewController.swift in Sources */,
 				1119326F27E9936C00ECAED4 /* LoginViewController.swift in Sources */,
 				1119326B27E9936C00ECAED4 /* AppDelegate.swift in Sources */,
 				1119328D27EAFA7A00ECAED4 /* newPhotoModel.swift in Sources */,
