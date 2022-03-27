@@ -44,7 +44,7 @@ class DownloadPhotoViewController: UIViewController {
         button.tintColor = .white
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(newPhoto), for: .touchUpInside)
+        button.addTarget(DownloadPhotoViewController.self, action: #selector(newPhoto), for: .touchUpInside)
         return button
     }()
     
