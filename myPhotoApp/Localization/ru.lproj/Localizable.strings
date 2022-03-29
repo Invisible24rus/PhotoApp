@@ -1,0 +1,17 @@
+"welcome" = "Добро пожаловать";
+"enterYourName" = "Введите свое имя";
+"enterYourPassword" = "Введите пароль";
+"login" = "Вход";
+"registration" = "Регистрация";
+"verification" = "Подвердить";
+"congratulations" = "Поздравляем";
+"registrationAlert" = "Вы зарегестрированы. Вернитесь на главный экран для входа";
+"ok" = "Ок";
+"gallery" = "Галерея";
+"сommentary" = "Комментарий";
+"add" = "Добавить";
+"back" = "Назад";
+"error" = "Ошибка";
+"errorCameraAlert" = "Камена не доступна";
+"addPhotoAllert" = "Фотография успешно добавлена в галерею";
+"image" = "Изображение";

@@ -24,7 +24,7 @@ class DownloadPhotoViewController: UIViewController {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
-        textField.placeholder = "Комментарий"
+        textField.placeholder = NSLocalizedString("сommentary", comment: "")
         return textField
     }()
     
@@ -38,17 +38,17 @@ class DownloadPhotoViewController: UIViewController {
         return image
     }()
     
-    private let newPhotoWithCameraButton: UIButton = {
+    private lazy var newPhotoWithCameraButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "camera.fill"), for: .normal)
         button.tintColor = .white
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 20
-        button.addTarget(DownloadPhotoViewController.self, action: #selector(newPhoto), for: .touchUpInside)
+        button.addTarget(self, action: #selector(newPhoto), for: .touchUpInside)
         return button
     }()
     
-    private let downloadPhotoButton: UIButton = {
+    private lazy var downloadPhotoButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "folder.fill.badge.plus"), for: .normal)
         button.tintColor = .white
@@ -58,9 +58,9 @@ class DownloadPhotoViewController: UIViewController {
         return button
     }()
     
-    private let doneButton: UIButton = {
+    private lazy var doneButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Добавить", for: .normal)
+        button.setTitle(NSLocalizedString("add", comment: ""), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .darkGray
         button.isEnabled = false
@@ -69,9 +69,9 @@ class DownloadPhotoViewController: UIViewController {
         return button
     }()
     
-    private let backButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Назад", for: .normal)
+        button.setTitle(NSLocalizedString("back", comment: ""), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 5
@@ -128,6 +128,7 @@ class DownloadPhotoViewController: UIViewController {
     }
     
     @objc func newPhoto() {
+        
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             showAlertError()
             return
@@ -151,14 +152,14 @@ class DownloadPhotoViewController: UIViewController {
     }
     
     func showAlertError() {
-        let alert = UIAlertController(title: "Ошибка", message: "Камера не доступна", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Назад", style: .destructive, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("errorCameraAlert", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("back", comment: ""), style: .destructive, handler: nil))
         present(alert, animated: true)
     }
     
     func showAlertDone() {
-        let alert = UIAlertController(title: "Получилось", message: "Фотография успешно добавлена в галерею", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { UIAlertAction in
+        let alert = UIAlertController(title: NSLocalizedString("congratulations", comment: ""), message: NSLocalizedString("addPhotoAllert", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: { UIAlertAction in
             self.photoImageView.contentMode = .scaleAspectFit
             self.photoImageView.image = UIImage(systemName: "photo.artframe")
             self.commentTextFiled.text = ""
@@ -175,7 +176,7 @@ private extension DownloadPhotoViewController {
     
     func setupView() {
         
-        title = "Изображение"
+        title = NSLocalizedString("image", comment: "")
         view.backgroundColor = .white
 
     }

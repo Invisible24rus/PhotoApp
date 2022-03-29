@@ -68,7 +68,7 @@ private extension GalleryViewController {
     
     func setupView() {
       
-        title = "Галерея"
+        title = NSLocalizedString("gallery", comment: "")
         view.backgroundColor = .white
         
         let addNewPhotoButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pressPlusButton))

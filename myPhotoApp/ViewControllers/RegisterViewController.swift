@@ -15,7 +15,8 @@ class RegisterViewController: UIViewController {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
-        textField.placeholder = "Введите имя"
+        textField.
+        textField.placeholder = NSLocalizedString("enterYourName", comment: "")
         return textField
     }()
     
@@ -23,13 +24,13 @@ class RegisterViewController: UIViewController {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
-        textField.placeholder = "Введите пароль"
+        textField.placeholder = NSLocalizedString("enterYourPassword", comment: "")
         return textField
     }()
     
-    private let regesterButton: UIButton = {
+    private lazy var regesterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Подвердить", for: .normal)
+        button.setTitle(NSLocalizedString("verification", comment: ""), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 5
@@ -65,7 +66,7 @@ class RegisterViewController: UIViewController {
     }
     
     func showAlertSuccess() {
-        let alert = UIAlertController(title: "Поздравляем", message: "Вы зарегестрированы. Вернитесь на главный экран для входа", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("congratulations", comment: ""), message: NSLocalizedString("registrationAlert", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
         present(alert, animated: true)
     }
@@ -78,7 +79,7 @@ private extension RegisterViewController {
     
     func setupView() {
         
-        title = "Регистрация"
+        title = NSLocalizedString("registration", comment: "")
         view.backgroundColor = .white
         
         

@@ -52,10 +52,7 @@ class ScrollPhotoViewController: UIViewController {
 private extension ScrollPhotoViewController {
     
     func setupView() {
-        view.backgroundColor = .white
-        
-        
-        
+        view.backgroundColor = .white  
     }
     
     func setConstraint() {

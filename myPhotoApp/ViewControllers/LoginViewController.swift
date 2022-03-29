@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
-        textField.placeholder = "Введите имя"
+        textField.placeholder = NSLocalizedString("enterYourName", comment: "")
         return textField
     }()
     
@@ -24,13 +24,13 @@ class LoginViewController: UIViewController {
         textField.backgroundColor = .white
         textField.isSecureTextEntry = true
         textField.borderStyle = .roundedRect
-        textField.placeholder = "Введите пароль"
+        textField.placeholder = NSLocalizedString("enterYourPassword", comment: "")
         return textField
     }()
     
-    private let goToGalleryButton: UIButton = {
+    private lazy var goToGalleryButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Вход", for: .normal)
+        button.setTitle(NSLocalizedString("login", comment: ""), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 5
@@ -38,9 +38,9 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    private let goToRegisterButton: UIButton = {
+    private lazy var goToRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Регистрация", for: .normal)
+        button.setTitle(NSLocalizedString("registration", comment: ""), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 5
@@ -89,8 +89,8 @@ class LoginViewController: UIViewController {
     }
     
     func showAlertError() {
-        let alert = UIAlertController(title: "Ошибка", message: "Логин/Пароль не верный", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Назад", style: .destructive, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("errorLoginAlert", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("back", comment: ""), style: .destructive, handler: nil))
         present(alert, animated: true)
     }
 
@@ -102,7 +102,7 @@ private extension LoginViewController {
     
     func setupView() {
         
-        title = "Добро пожаловать"
+        title = NSLocalizedString("welcome", comment: "")
         view.backgroundColor = .white
 
     }
