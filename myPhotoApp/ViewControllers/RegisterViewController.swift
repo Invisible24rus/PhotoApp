@@ -9,13 +9,15 @@ import UIKit
 import Foundation
 import Security
 
+
+
 class RegisterViewController: UIViewController {
+    
     
     private let userNameTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
-        textField.
         textField.placeholder = NSLocalizedString("enterYourName", comment: "")
         return textField
     }()
@@ -45,6 +47,8 @@ class RegisterViewController: UIViewController {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         view.addGestureRecognizer(recognizer)
     }
+    
+    
     
     func register(userName: String, password: String) {
         guard let password = password.data(using: .utf8) else { return }
@@ -79,6 +83,8 @@ private extension RegisterViewController {
     
     func setupView() {
         
+        
+        
         title = NSLocalizedString("registration", comment: "")
         view.backgroundColor = .white
         
@@ -107,7 +113,7 @@ private extension RegisterViewController {
             
         ])
     }
-    
+
     @objc func regesterDone() {
         register(userName: userNameTextField.text ?? "", password: passwordTextFiled.text ?? "")
         regesterButton.isEnabled = false
