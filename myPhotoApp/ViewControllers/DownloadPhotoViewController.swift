@@ -97,6 +97,8 @@ class DownloadPhotoViewController: UIViewController {
         print(identifiersArray.count)
         manager.save(image: photoImageView.image, name: "\(identifier)", comment: commentTextFiled.text ?? "")
         showAlertDone()
+        doneButton.backgroundColor = .darkGray
+        doneButton.isEnabled = false
     }
     
     @objc func keyboardWillShow(_ notification: NSNotification) {

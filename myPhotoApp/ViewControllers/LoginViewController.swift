@@ -76,8 +76,9 @@ class LoginViewController: UIViewController {
                 print(username)
                 print(password)
                 completion()
+            } else {
+                showAlertError()
             }
-            showAlertError()
         } else {
             showAlertError()
             print("Error")

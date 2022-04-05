@@ -20,11 +20,17 @@ class ScrollPhotoViewController: UIViewController {
         textField.placeholder = ""
         return textField
     }()
-
+    
+    private var commentLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textColor = .black
+        return label
+    }()
+    
     private let collectionVIew: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0
         let collectionVIew = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionVIew.backgroundColor = .white
@@ -52,7 +58,7 @@ class ScrollPhotoViewController: UIViewController {
 private extension ScrollPhotoViewController {
     
     func setupView() {
-        view.backgroundColor = .white  
+        view.backgroundColor = .white
     }
     
     func setConstraint() {
@@ -60,10 +66,10 @@ private extension ScrollPhotoViewController {
         
         NSLayoutConstraint.activate([
             
-            collectionVIew.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            collectionVIew.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionVIew.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionVIew.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionVIew.heightAnchor.constraint(equalToConstant: view.frame.height / 2),
+            collectionVIew.bottomAnchor.constraint(equalTo: commentTextFiled.topAnchor),
             
             commentTextFiled.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             commentTextFiled.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -86,23 +92,29 @@ extension ScrollPhotoViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath)
         let imageData = photoArray[indexPath.row].imageData
         let uiImage = UIImage(data: imageData)
-        commentTextFiled.text = photoArray[indexPath.row].comment
         cell.backgroundView = UIImageView(image: uiImage)
+        commentTextFiled.text = photoArray[indexPath.row].comment
         return cell
     }
-    
-   
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
 extension ScrollPhotoViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
-        
         let itemsPerRow = 1
-        let itemWidth = (collectionView.frame.width - (layout.minimumLineSpacing * CGFloat(itemsPerRow-1))) / CGFloat(itemsPerRow)
+        let itemWidth = (collectionView.frame.width - layout.minimumLineSpacing) / CGFloat(itemsPerRow)
         let itemHeight = itemWidth
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("x")
+  
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        print(targetContentOffset.pointee)
+    }
 }
+

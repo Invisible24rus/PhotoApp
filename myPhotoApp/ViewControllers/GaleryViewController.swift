@@ -40,8 +40,6 @@ class GalleryViewController: UIViewController {
         super.viewWillAppear(animated)
         identifiersArray = UserDefaults.standard.stringArray(forKey: "keyList") ?? [String]()
         fillingArrayPhoto()
-        print(identifiersArray.count)
-        print(newPhotoArray.count)
         galleryPhotoCollectionView.reloadData()
     }
     
