@@ -81,6 +81,13 @@ class RegisterViewController: UIViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("back", comment: ""), style: .destructive, handler: nil))
         present(alert, animated: true)
     }
+    
+    @objc func regesterDone() {
+        register(userName: userNameTextField.text ?? "", password: passwordTextFiled.text ?? "")
+        regesterButton.isEnabled = false
+        regesterButton.backgroundColor = .darkGray
+        showAlertSuccess()
+    }
 
 }
 
@@ -89,14 +96,10 @@ class RegisterViewController: UIViewController {
 private extension RegisterViewController {
     
     func setupView() {
-        
-        
-        
+
         title = NSLocalizedString("registration", comment: "")
         view.backgroundColor = .white
-        
-        
-        
+
     }
     
     func setConstraint() {
@@ -121,10 +124,5 @@ private extension RegisterViewController {
         ])
     }
 
-    @objc func regesterDone() {
-        register(userName: userNameTextField.text ?? "", password: passwordTextFiled.text ?? "")
-        regesterButton.isEnabled = false
-        regesterButton.backgroundColor = .darkGray
-        showAlertSuccess()
-    }
+    
 }

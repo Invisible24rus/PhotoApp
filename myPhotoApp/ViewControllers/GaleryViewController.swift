@@ -56,6 +56,11 @@ class GalleryViewController: UIViewController {
             newPhotoArray.append(newPhoto)
         }
     }
+    
+//    @objc func backToRootView() {
+//        print("back")
+//        navigationController?.popToRootViewController(animated: true) 
+//    }
 
 }
 
@@ -71,7 +76,8 @@ private extension GalleryViewController {
         
         let addNewPhotoButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pressPlusButton))
         navigationItem.rightBarButtonItem = addNewPhotoButton
-        
+//      let backButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(backToRootView)
+
     }
     
     func setConstraint() {
@@ -91,7 +97,6 @@ extension GalleryViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         newPhotoArray.count
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
