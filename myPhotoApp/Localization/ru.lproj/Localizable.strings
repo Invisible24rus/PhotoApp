@@ -2,6 +2,8 @@
 "enterYourName" = "Введите свое имя";
 "enterYourPassword" = "Введите пароль";
 "login" = "Вход";
+"errorLoginAlert" = "Неверный логин или пароль";
+"errorRegisterAlert" = "Логин или пароль должен содержать минимум 1 символ";
 "registration" = "Регистрация";
 "verification" = "Подвердить";
 "congratulations" = "Поздравляем";

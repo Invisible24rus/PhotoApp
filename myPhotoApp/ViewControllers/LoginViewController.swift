@@ -93,6 +93,21 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("back", comment: ""), style: .destructive, handler: nil))
         present(alert, animated: true)
     }
+    
+    @objc func goToGallery() {
+        login(userName: userNameTextField.text ?? "", password: passwordTextFiled.text ?? "") {
+            let galleryViewController = GalleryViewController()
+            navigationItem.backButtonTitle = ""
+            navigationController?.pushViewController(galleryViewController, animated: true)
+        }
+    }
+    
+    @objc func goToRegister() {
+        let registerViewController = RegisterViewController()
+        navigationItem.backButtonTitle = ""
+        navigationController?.pushViewController(registerViewController, animated: true)
+        
+    }
 
 }
 
@@ -132,21 +147,6 @@ private extension LoginViewController {
             goToRegisterButton.heightAnchor.constraint(equalToConstant: 40)
             
         ])
-    }
-    
-    @objc func goToGallery() {
-        login(userName: userNameTextField.text ?? "", password: passwordTextFiled.text ?? "") {
-            let galleryViewController = GalleryViewController()
-            navigationItem.backButtonTitle = ""
-            navigationController?.pushViewController(galleryViewController, animated: true)
-        }
-    }
-    
-    @objc func goToRegister() {
-        let registerViewController = RegisterViewController()
-        navigationItem.backButtonTitle = ""
-        navigationController?.pushViewController(registerViewController, animated: true)
-        
     }
 }
 

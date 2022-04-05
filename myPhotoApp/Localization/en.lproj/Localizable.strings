@@ -3,6 +3,7 @@
 "enterYourPassword" = "Enter your password";
 "login" = "Login";
 "errorLoginAlert" = "Wrong Login/Password";
+"errorRegisterAlert" = "Login or password must contain at least 1 character";
 "registration" = "Registration";
 "verification" = "Verification";
 "congratulations" = "Congratulations";

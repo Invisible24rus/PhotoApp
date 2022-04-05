@@ -48,16 +48,17 @@ class RegisterViewController: UIViewController {
         view.addGestureRecognizer(recognizer)
     }
     
-    
-    
     func register(userName: String, password: String) {
+        if userName == "" || password == "" {
+            showAlertError()
+            return
+        }
         guard let password = password.data(using: .utf8) else { return }
         let attributes: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: userName,
             kSecValueData as String: password,
-        ]
-        
+            ]
         if SecItemAdd(attributes as CFDictionary, nil) == noErr {
             print("Пользователь зарегистрирован")
         } else {
@@ -72,6 +73,12 @@ class RegisterViewController: UIViewController {
     func showAlertSuccess() {
         let alert = UIAlertController(title: NSLocalizedString("congratulations", comment: ""), message: NSLocalizedString("registrationAlert", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
+    
+    func showAlertError() {
+        let alert = UIAlertController(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("errorRegisterAlert", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("back", comment: ""), style: .destructive, handler: nil))
         present(alert, animated: true)
     }
 
