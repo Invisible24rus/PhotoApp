@@ -58,7 +58,6 @@ class GalleryViewController: UIViewController {
     }
     
     @objc func backToRootView() {
-        print("back")
         navigationController?.popToRootViewController(animated: true)
     }
 
@@ -79,8 +78,6 @@ private extension GalleryViewController {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(backToRootView))
         backButton.image = UIImage(systemName: "chevron.backward")
         navigationItem.leftBarButtonItem = backButton
-        
-        
     }
     
     func setConstraint() {
@@ -126,6 +123,7 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let scrollPhotoViewController = ScrollPhotoViewController()
         scrollPhotoViewController.photoArray = newPhotoArray
+        scrollPhotoViewController.indexPathX = IndexPath(item: indexPath.row, section: 0)
         navigationItem.backButtonTitle = ""
         navigationController?.pushViewController(scrollPhotoViewController, animated: true)
     }

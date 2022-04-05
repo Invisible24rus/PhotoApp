@@ -10,8 +10,8 @@ import UIKit
 class ScrollPhotoViewController: UIViewController {
     
     let manager = LocalFileManager.instance
-    
     var photoArray: [NewPhoto] = []
+    var indexPathX = IndexPath(item: 0, section: 0)
     
     private let commentTextFiled: UITextField = {
         let textField = UITextField()
@@ -32,6 +32,7 @@ class ScrollPhotoViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         let collectionVIew = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionVIew.backgroundColor = .white
         collectionVIew.isPagingEnabled = true
@@ -48,7 +49,12 @@ class ScrollPhotoViewController: UIViewController {
         setConstraint()
         collectionVIew.delegate = self
         collectionVIew.dataSource = self
+        collectionVIew.performBatchUpdates(nil) { (_) in
+            self.collectionVIew.scrollToItem(at: self.indexPathX, at: .centeredHorizontally, animated: false)
+            self.commentTextFiled.text = self.photoArray[self.indexPathX.row].comment
+        }
     }
+    
 
 }
 
@@ -93,28 +99,23 @@ extension ScrollPhotoViewController: UICollectionViewDataSource {
         let imageData = photoArray[indexPath.row].imageData
         let uiImage = UIImage(data: imageData)
         cell.backgroundView = UIImageView(image: uiImage)
-        commentTextFiled.text = photoArray[indexPath.row].comment
         return cell
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
-extension ScrollPhotoViewController: UICollectionViewDelegateFlowLayout {
+extension ScrollPhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
         let itemsPerRow = 1
-        let itemWidth = (collectionView.frame.width - layout.minimumLineSpacing) / CGFloat(itemsPerRow)
+        let itemWidth = (collectionView.frame.width - layout.minimumLineSpacing - layout.minimumInteritemSpacing) / CGFloat(itemsPerRow)
         let itemHeight = itemWidth
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("x")
-  
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        commentTextFiled.text = photoArray[indexPath.row].comment
     }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print(targetContentOffset.pointee)
-    }
+
 }
 
