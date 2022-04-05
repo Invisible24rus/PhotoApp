@@ -77,11 +77,11 @@ class LoginViewController: UIViewController {
                 print(password)
                 completion()
             }
+            showAlertError()
         } else {
             showAlertError()
             print("Error")
         }
-        
     }
     
     @objc func tap() {
