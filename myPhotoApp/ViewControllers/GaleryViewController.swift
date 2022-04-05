@@ -57,10 +57,10 @@ class GalleryViewController: UIViewController {
         }
     }
     
-//    @objc func backToRootView() {
-//        print("back")
-//        navigationController?.popToRootViewController(animated: true) 
-//    }
+    @objc func backToRootView() {
+        print("back")
+        navigationController?.popToRootViewController(animated: true)
+    }
 
 }
 
@@ -76,8 +76,11 @@ private extension GalleryViewController {
         
         let addNewPhotoButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pressPlusButton))
         navigationItem.rightBarButtonItem = addNewPhotoButton
-//      let backButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(backToRootView)
-
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(backToRootView))
+        backButton.image = UIImage(systemName: "chevron.backward")
+        navigationItem.leftBarButtonItem = backButton
+        
+        
     }
     
     func setConstraint() {

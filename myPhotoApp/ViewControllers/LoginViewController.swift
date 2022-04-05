@@ -105,7 +105,7 @@ class LoginViewController: UIViewController {
     
     @objc func goToRegister() {
         let registerViewController = RegisterViewController()
-        navigationItem.backButtonTitle = ""
+//        navigationItem.backButtonTitle = ""
         navigationController?.pushViewController(registerViewController, animated: true)
         
     }

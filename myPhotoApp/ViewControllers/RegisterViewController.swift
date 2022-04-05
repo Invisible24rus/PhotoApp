@@ -84,9 +84,10 @@ class RegisterViewController: UIViewController {
     
     @objc func regesterDone() {
         register(userName: userNameTextField.text ?? "", password: passwordTextFiled.text ?? "")
-        regesterButton.isEnabled = false
-        regesterButton.backgroundColor = .darkGray
-        showAlertSuccess()
+//        regesterButton.isEnabled = false
+//        regesterButton.backgroundColor = .darkGray
+        let galleryViewController = GalleryViewController()
+        navigationController?.pushViewController(galleryViewController, animated: true)
     }
 
 }
