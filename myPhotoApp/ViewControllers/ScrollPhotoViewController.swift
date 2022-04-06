@@ -109,6 +109,5 @@ extension ScrollPhotoViewController: UICollectionViewDelegateFlowLayout, UIColle
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         commentTextFiled.text = photoArray[indexPath.row].comment
     }
-
 }
 
