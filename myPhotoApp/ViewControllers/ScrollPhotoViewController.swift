@@ -11,7 +11,7 @@ class ScrollPhotoViewController: UIViewController {
     
     let manager = LocalFileManager.instance
     var photoArray: [NewPhoto] = []
-    var indexPathX = IndexPath(item: 0, section: 0)
+    var indexPath = IndexPath(item: 0, section: 0)
     
     private let commentTextFiled: UITextField = {
         let textField = UITextField()
@@ -20,14 +20,7 @@ class ScrollPhotoViewController: UIViewController {
         textField.placeholder = ""
         return textField
     }()
-    
-    private var commentLabel: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textColor = .black
-        return label
-    }()
-    
+
     private let collectionVIew: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -50,8 +43,8 @@ class ScrollPhotoViewController: UIViewController {
         collectionVIew.delegate = self
         collectionVIew.dataSource = self
         collectionVIew.performBatchUpdates(nil) { (_) in
-            self.collectionVIew.scrollToItem(at: self.indexPathX, at: .centeredHorizontally, animated: false)
-            self.commentTextFiled.text = self.photoArray[self.indexPathX.row].comment
+            self.collectionVIew.scrollToItem(at: self.indexPath, at: .centeredHorizontally, animated: false)
+            self.commentTextFiled.text = self.photoArray[self.indexPath.row].comment
         }
     }
     

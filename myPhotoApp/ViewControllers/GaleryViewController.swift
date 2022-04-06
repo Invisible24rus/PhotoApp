@@ -123,7 +123,7 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let scrollPhotoViewController = ScrollPhotoViewController()
         scrollPhotoViewController.photoArray = newPhotoArray
-        scrollPhotoViewController.indexPathX = IndexPath(item: indexPath.row, section: 0)
+        scrollPhotoViewController.indexPath = IndexPath(item: indexPath.row, section: 0)
         navigationItem.backButtonTitle = ""
         navigationController?.pushViewController(scrollPhotoViewController, animated: true)
     }
